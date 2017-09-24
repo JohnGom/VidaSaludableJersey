@@ -1,6 +1,7 @@
 package jayray.net.data;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -8,8 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Jornada {
 	private int id;
-	private int encargado;
-	private User infoEncargado;
+	private ArrayList<User> encargados;
 	private int programa;
 	private String name;
 	private String city;
@@ -17,6 +17,7 @@ public class Jornada {
 	private Date date;
 	private String tipo;
 	private String place;
+	private String state;
 	
 	@XmlElement
 	public int getId() {
@@ -61,13 +62,6 @@ public class Jornada {
 		this.tipo = tipo;
 	}
 	@XmlElement
-	public int getEncargado() {
-		return encargado;
-	}
-	public void setEncargado(int encargado) {
-		this.encargado = encargado;
-	}
-	@XmlElement
 	public String getName() {
 		return name;
 	}
@@ -81,11 +75,19 @@ public class Jornada {
 	public void setPrograma(int programa) {
 		this.programa = programa;
 	}
-	public User getInfoEncargado() {
-		return infoEncargado;
+	@XmlElement
+	public String getState() {
+		return state;
 	}
-	public void setInfoEncargado(User infoEncargado) {
-		this.infoEncargado = infoEncargado;
+	public void setState(String state) {
+		this.state = state;
+	}
+	@XmlElement
+	public ArrayList<User> getEncargados() {
+		return encargados;
+	}
+	public void setEncargados(ArrayList<User> encargados) {
+		this.encargados = encargados;
 	}
 
 }

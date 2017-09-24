@@ -16,6 +16,7 @@ import jayray.net.bd.JornadaDb;
 import jayray.net.bd.Program;
 import jayray.net.data.Jornada;
 import jayray.net.data.Programa;
+import jayray.net.data.User;
 
 @Path("/jornada")
 public class InfoJornada {
@@ -23,22 +24,22 @@ public class InfoJornada {
 	@GET
     @Path("/allJornadas")
 	@Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Jornada> getProgama() throws Exception {
+    public ArrayList<Jornada> getjornadas(@QueryParam("programa") int id) throws Exception {
     try {
     	JornadaDb jor = new JornadaDb();
-	    return jor.getAllJornadas();
+	    return jor.getAllJornadas(id);
 	} catch (Exception e) {
 		throw e;
 	}
 	}
 	
 	@GET
-    @Path("/getjornada")
+    @Path("/getjornadabyencuestador")
 	@Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Jornada> getProgama(@QueryParam("programa") int idPrograma) throws Exception {
+    public ArrayList<Jornada> getProgama(@QueryParam("encuestador") int idEncuestador) throws Exception {
     try {
     	JornadaDb jor = new JornadaDb();
-	    return jor.getJornadas(idPrograma);
+	    return jor.getJornadaByEncuestador(idEncuestador);
 	} catch (Exception e) {
 		throw e;
 	}
@@ -53,7 +54,16 @@ public class InfoJornada {
 		JornadaDb jornad = new JornadaDb();
 		jornad.insertJornada(jornada);
 		return "ok";
-        
+    }
+
+	@POST
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces({MediaType.TEXT_PLAIN})
+	@Path("/assignEn")
+	public String assignEn(@QueryParam("jornada") int jornada, ArrayList<User> users) throws Exception{
+		JornadaDb jornad = new JornadaDb();
+		jornad.insertEncargadosJornada(users, jornada);
+		return "ok";
     }
 	
 	@DELETE

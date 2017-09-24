@@ -6,9 +6,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class User {
 	private int id;
+	private String name;
 	private String username;
 	private String password;
 	private String type;
+	private boolean state;
 	
 	@XmlElement
 	public String getUsername() {
@@ -37,6 +39,19 @@ public class User {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	@XmlElement
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public boolean isState() {
+		return state;
+	}
+	public void setState(boolean state) {
+		this.state = state;
 	}
 	
 }
