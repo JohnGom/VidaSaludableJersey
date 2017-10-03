@@ -18,6 +18,7 @@ public class Jornada {
 	private String tipo;
 	private String place;
 	private String state;
+	private Programa program;
 	
 	@XmlElement
 	public int getId() {
@@ -88,6 +89,13 @@ public class Jornada {
 	}
 	public void setEncargados(ArrayList<User> encargados) {
 		this.encargados = encargados;
+	}
+	@XmlElement
+	public Programa getProgram() {
+		return program;
+	}
+	public void setProgram(Programa program) {
+		this.program = program;
 	}
 
 }

@@ -12,6 +12,10 @@
       <param-value>jayray</param-value>
     </init-param>
     <init-param>
+        <param-name>jersey.config.server.provider.classnames</param-name>
+        <param-value>jayray.net.CORSFilter</param-value>
+    </init-param>
+    <init-param>
 		<param-name>org.glassfish.jersey.api.json.POJOMappingFeature</param-name>
 		<param-value>true</param-value>
 	</init-param>

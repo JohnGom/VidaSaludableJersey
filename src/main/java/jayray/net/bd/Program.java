@@ -10,25 +10,23 @@ import jayray.net.data.Programa;
 
 public class Program {
 
-	public ArrayList<Programa> getPrograms(int id) throws Exception {
+	public Programa getPrograms(int id) throws Exception {
 		DbConnection database= new DbConnection();
 		Connection connection = database.getConnection();
 		ArrayList<Programa> userList = new ArrayList<Programa>();
 		try {
+        Programa program = new Programa();
 		PreparedStatement ps = connection
-		.prepareStatement("select distinct(id), programas.* from programas \r\n" + 
-				"LEFT JOIN jornadas ON programas.id=jornadas.programa\r\n" + 
-				"WHERE jornadas.encargado ="+id);
+		.prepareStatement("select * from programas where id="+id);
 		ResultSet rs = ps.executeQuery();
+		
 		while (rs.next()) {
-	    Programa program = new Programa();
 	    program.setId(rs.getInt("id"));
 	    program.setName(rs.getString("nombre"));
 	    program.setDescription(rs.getString("descripcion"));
 	    program.setEntity(rs.getString("entidadColaboradora"));
-		userList.add(program);
 		}
-		return userList;
+		return program;
 		} catch (Exception e) {
 		throw e;
 		}

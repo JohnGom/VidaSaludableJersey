@@ -23,7 +23,7 @@ public class InfoJornada {
 	
 	@GET
     @Path("/allJornadas")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public ArrayList<Jornada> getjornadas(@QueryParam("programa") int id) throws Exception {
     try {
     	JornadaDb jor = new JornadaDb();
@@ -35,7 +35,7 @@ public class InfoJornada {
 	
 	@GET
     @Path("/getjornadabyencuestador")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public ArrayList<Jornada> getProgama(@QueryParam("encuestador") int idEncuestador) throws Exception {
     try {
     	JornadaDb jor = new JornadaDb();
@@ -46,8 +46,8 @@ public class InfoJornada {
 	}
 	
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.TEXT_PLAIN})
+	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	@Produces(MediaType.TEXT_PLAIN + ";charset=utf-8")
 	@Path("/newJornada")
 	public String create(Jornada jornada) throws Exception{
         
@@ -57,8 +57,8 @@ public class InfoJornada {
     }
 
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON})
-	@Produces({MediaType.TEXT_PLAIN})
+	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	@Produces(MediaType.TEXT_PLAIN + ";charset=utf-8")
 	@Path("/assignEn")
 	public String assignEn(@QueryParam("jornada") int jornada, ArrayList<User> users) throws Exception{
 		JornadaDb jornad = new JornadaDb();
@@ -81,7 +81,7 @@ public class InfoJornada {
 	}
 	
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
 	@Produces(MediaType.TEXT_PLAIN)
 	@Path("/updjornada")
 	public String Update(Jornada jornada) throws Exception{

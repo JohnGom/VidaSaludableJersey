@@ -15,6 +15,7 @@ public class JornadaDb {
 		Connection connection = database.getConnection();
 		ArrayList<Jornada> jornadaList = new ArrayList<Jornada>();
 		LoginHandler user = new LoginHandler();
+		Program pro = new Program();
 		try {
 		PreparedStatement ps = connection
 		.prepareStatement("SELECT * FROM jornadas where programa=" + id);
@@ -22,7 +23,7 @@ public class JornadaDb {
 		while (rs.next()) {
 	    Jornada jornada = new Jornada();
 	    jornada.setId(rs.getInt("numero"));
-	    jornada.setPrograma(rs.getInt("programa"));
+	    jornada.setProgram(pro.getPrograms(id));
 	    jornada.setName(rs.getString("nombre"));
 	    jornada.setEncargados(user.users(rs.getInt("numero")));
 	    jornada.setCity(rs.getString("ubicacion_codMunicipio"));
@@ -53,11 +54,13 @@ public class JornadaDb {
 	    Jornada jornada = new Jornada();
 	    jornada.setId(rs.getInt("numero"));
 	    jornada.setPrograma(rs.getInt("programa"));
+	    jornada.setName(rs.getString("nombre"));
 	    jornada.setCity(rs.getString("ubicacion_codMunicipio"));
 	    jornada.setDepartment(rs.getString("ubicacion_dpto"));
 	    jornada.setDate(rs.getDate("fecha"));
 	    jornada.setTipo(rs.getString("tipo"));
 	    jornada.setPlace(rs.getString("lugarJornada"));
+	    jornada.setState(rs.getString("estado"));
 	    jornadaList.add(jornada);
 		}
 		return jornadaList;
@@ -82,7 +85,6 @@ public class JornadaDb {
 	      preparedStmt.setString (7, jornada.getPlace());
 	      preparedStmt.setString (8, jornada.getState());
 	      preparedStmt.execute();
-	      
 	      connection.close();
 	     
 	      return true;
@@ -124,7 +126,7 @@ public class JornadaDb {
 	      preparedStmt.setString (7, jornada.getState());
 	      preparedStmt.setInt (8, jornada.getId());
 	      preparedStmt.execute();
-	      
+	      System.out.println(jornada.getDepartment());
 	      connection.close();
 	      
 	      return true;

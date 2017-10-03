@@ -29,18 +29,6 @@ import jayray.net.data.User;
 
 @Path("/program")
 public class InfoProgram {
-
-	@GET
-    @Path("/getprograms")
-	@Produces(MediaType.APPLICATION_JSON)
-    public ArrayList<Programa> getProgama(@QueryParam("encargado") int idEncargado) throws Exception {
-    try {
-		Program program = new Program();
-	    return program.getPrograms(idEncargado);
-	} catch (Exception e) {
-		throw e;
-	}
-	}
 	
 	@GET
     @Path("/getallprograms")
