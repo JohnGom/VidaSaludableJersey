@@ -29,6 +29,7 @@ public class JornadaDb {
 	    jornada.setCity(rs.getString("ubicacion_codMunicipio"));
 	    jornada.setDepartment(rs.getString("ubicacion_dpto"));
 	    jornada.setDate(rs.getDate("fecha"));
+	    jornada.setBioquimica(rs.getBoolean("bioquimica"));
 	    jornada.setTipo(rs.getString("tipo"));
 	    jornada.setPlace(rs.getString("lugarJornada"));
 	    jornada.setState(rs.getString("estado"));
@@ -58,6 +59,7 @@ public class JornadaDb {
 	    jornada.setCity(rs.getString("ubicacion_codMunicipio"));
 	    jornada.setDepartment(rs.getString("ubicacion_dpto"));
 	    jornada.setDate(rs.getDate("fecha"));
+	    jornada.setBioquimica(rs.getBoolean("bioquimica"));
 	    jornada.setTipo(rs.getString("tipo"));
 	    jornada.setPlace(rs.getString("lugarJornada"));
 	    jornada.setState(rs.getString("estado"));
@@ -73,17 +75,18 @@ public class JornadaDb {
 		DbConnection database= new DbConnection();
 		Connection connection = database.getConnection();
 		try {
-		String query = "insert into jornadas(programa, nombre, ubicacion_codMunicipio, ubicacion_dpto, fecha, tipo, lugarJornada, estado)"
-		        + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into jornadas(programa, nombre, ubicacion_codMunicipio, ubicacion_dpto, bioquimica, fecha, tipo, lugarJornada, estado)"
+		        + " values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement preparedStmt = connection.prepareStatement(query);
 		  preparedStmt.setInt (1, jornada.getPrograma());
 	      preparedStmt.setString (2, jornada.getName());
 	      preparedStmt.setString (3, jornada.getCity());
 	      preparedStmt.setString (4, jornada.getDepartment());
-	      preparedStmt.setDate (5, jornada.getDate());
-	      preparedStmt.setString (6, jornada.getTipo());
-	      preparedStmt.setString (7, jornada.getPlace());
-	      preparedStmt.setString (8, jornada.getState());
+	      preparedStmt.setBoolean (5, jornada.isBioquimica());
+	      preparedStmt.setDate (6, jornada.getDate());
+	      preparedStmt.setString (7, jornada.getTipo());
+	      preparedStmt.setString (8, jornada.getPlace());
+	      preparedStmt.setString (9, jornada.getState());
 	      preparedStmt.execute();
 	      connection.close();
 	     
@@ -114,17 +117,18 @@ public class JornadaDb {
 		DbConnection database= new DbConnection();
 		Connection connection = database.getConnection();
 		try {
-		String query = "update jornadas set nombre = ?, ubicacion_codMunicipio = ?, "
-				+ "ubicacion_dpto = ?, fecha = ?, tipo = ?, lugarJornada = ?, estado = ?  where numero = ?";
+		String query = "update jornadas set nombre = ?, ubicacion_codMunicipio = ?, ubicacion_dpto = ?, "
+				+ " bioquimica = ?, fecha = ?, tipo = ?, lugarJornada = ?, estado = ?  where numero = ?";
 		PreparedStatement preparedStmt = connection.prepareStatement(query);
 	      preparedStmt.setString (1, jornada.getName());
 	      preparedStmt.setString (2, jornada.getCity());
 	      preparedStmt.setString (3, jornada.getDepartment());
-	      preparedStmt.setDate (4, jornada.getDate());
-	      preparedStmt.setString (5, jornada.getTipo());
-	      preparedStmt.setString (6, jornada.getPlace());
-	      preparedStmt.setString (7, jornada.getState());
-	      preparedStmt.setInt (8, jornada.getId());
+	      preparedStmt.setBoolean (4, jornada.isBioquimica());
+	      preparedStmt.setDate (5, jornada.getDate());
+	      preparedStmt.setString (6, jornada.getTipo());
+	      preparedStmt.setString (7, jornada.getPlace());
+	      preparedStmt.setString (8, jornada.getState());
+	      preparedStmt.setInt (9, jornada.getId());
 	      preparedStmt.execute();
 	      System.out.println(jornada.getDepartment());
 	      connection.close();

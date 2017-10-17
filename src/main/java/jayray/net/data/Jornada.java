@@ -18,6 +18,7 @@ public class Jornada {
 	private String tipo;
 	private String place;
 	private String state;
+	private boolean bioquimica;
 	private Programa program;
 	
 	@XmlElement
@@ -96,6 +97,13 @@ public class Jornada {
 	}
 	public void setProgram(Programa program) {
 		this.program = program;
+	}
+	@XmlElement
+	public boolean isBioquimica() {
+		return bioquimica;
+	}
+	public void setBioquimica(boolean bioquimica) {
+		this.bioquimica = bioquimica;
 	}
 
 }
