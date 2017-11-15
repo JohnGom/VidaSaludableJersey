@@ -13,6 +13,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import jayray.net.model.SecurityManager;
+import jayray.net.bd.InterpretationDb;
+import jayray.net.bd.LoginHandler;
+import jayray.net.data.DetalleInt;
+import jayray.net.data.Intervencion;
 import jayray.net.data.User;
 
 @Path("/WebService")
@@ -25,7 +29,16 @@ public class EchoResource {
         return getAllUsersList(username, password);
     }
 	
-
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON + ";charset=utf-8")
+	@Produces({MediaType.TEXT_PLAIN})
+	@Path("/sendEmail")
+	public String email(Intervencion intervencion) throws Exception{
+		LoginHandler inter = new LoginHandler();
+		inter.sendSimpleMessage(intervencion);
+		return "ok";
+    }
+	
 	public User getAllUsersList(String username,String password)
 	{
 		try 

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import jayray.net.data.DetalleInt;
+import jayray.net.data.InfoInter;
 import jayray.net.data.Interpretacion;
 import jayray.net.data.Jornada;
 import jayray.net.data.Pregunta;
@@ -30,6 +31,28 @@ public class InterpretationDb {
 	        questionsList.add(question);
 		}
 		return questionsList;
+		} catch (Exception e) {
+		throw e;
+		}
+		}
+	
+	public ArrayList<InfoInter> infoInterByDimension(String dimension) throws Exception {
+		DbConnection database= new DbConnection();
+		Connection connection = database.getConnection();
+		ArrayList<InfoInter> infoList = new ArrayList<InfoInter>();
+		try {
+		PreparedStatement ps = connection
+		.prepareStatement("SELECT * FROM infoInterpretaciones where dimension='" + dimension +"'");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			InfoInter question = new InfoInter();
+			question.setId(rs.getInt("id"));
+			question.setCategoria(rs.getString("categoria"));
+			question.setDimension(rs.getString("dimension"));
+			question.setRecomendacion(rs.getString("recomendacion"));
+			infoList.add(question);
+		}
+		return infoList;
 		} catch (Exception e) {
 		throw e;
 		}

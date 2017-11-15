@@ -153,13 +153,14 @@ public class ClientDb {
 		Connection connection = database.getConnection();
 		try {
 		String query = "update intervenciones set observacion = ?, resultado = ?, "
-				+ "fechaIntervencion = ?, fechaSeguimiento = ? where numero = ?";
+				+ "fechaIntervencion = ?, fechaSeguimiento = ?, correo = ? where numero = ?";
 		PreparedStatement preparedStmt = connection.prepareStatement(query);
 		  preparedStmt.setString (1, intervencion.getObservacion());
 	      preparedStmt.setString (2, intervencion.getResultado());
 	      preparedStmt.setDate (3, intervencion.getFechaInter());
 	      preparedStmt.setDate (4, intervencion.getFechaSegui());
-	      preparedStmt.setInt (5, intervencion.getId());
+	      preparedStmt.setString (5, intervencion.getCorreo());
+	      preparedStmt.setInt (6, intervencion.getId());
 	      preparedStmt.execute();
 	      connection.close();
 	     

@@ -16,6 +16,9 @@ public class Intervencion {
 	private Date fechaInter;
 	private Date fechaSegui;
 	private Client cliente;
+	private String correo;
+	private String tablaInter;
+	private String tablahead;
 	private ArrayList<DetalleInt> detalles;
 	private ArrayList<Interpretacion> interpretaciones;
 	
@@ -85,5 +88,23 @@ public class Intervencion {
 	}
 	public void setInterpretaciones(ArrayList<Interpretacion> interpretaciones) {
 		this.interpretaciones = interpretaciones;
+	}
+	public String getCorreo() {
+		return correo;
+	}
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+	public String getTablaInter() {
+		return tablaInter;
+	}
+	public void setTablaInter(String tablaInter) {
+		this.tablaInter = tablaInter;
+	}
+	public String getTablahead() {
+		return tablahead;
+	}
+	public void setTablahead(String tablahead) {
+		this.tablahead = tablahead;
 	}
 }

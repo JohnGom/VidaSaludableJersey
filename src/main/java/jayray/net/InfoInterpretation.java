@@ -15,6 +15,7 @@ import jayray.net.bd.InterpretationDb;
 import jayray.net.bd.JornadaDb;
 import jayray.net.data.Client;
 import jayray.net.data.DetalleInt;
+import jayray.net.data.InfoInter;
 import jayray.net.data.Interpretacion;
 import jayray.net.data.Pregunta;
 
@@ -28,6 +29,18 @@ public class InfoInterpretation {
     try {
 		InterpretationDb inter = new InterpretationDb();
 	    return inter.questionsByDimension(dimension);
+	} catch (Exception e) {
+		throw e;
+	}
+	}
+	
+	@GET
+    @Path("/infoInterpretaciones")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public ArrayList<InfoInter> infoInterp(@QueryParam("dimension") String dimension) throws Exception {
+    try {
+		InterpretationDb inter = new InterpretationDb();
+	    return inter.infoInterByDimension(dimension);
 	} catch (Exception e) {
 		throw e;
 	}
