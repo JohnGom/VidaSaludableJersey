@@ -36,6 +36,27 @@ public class InterpretationDb {
 		}
 		}
 	
+	public ArrayList<Pregunta> questionsAll() throws Exception {
+		DbConnection database= new DbConnection();
+		Connection connection = database.getConnection();
+		ArrayList<Pregunta> questionsList = new ArrayList<Pregunta>();
+		try {
+		PreparedStatement ps = connection
+		.prepareStatement("SELECT * FROM pregunta");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			Pregunta question = new Pregunta();
+			question.setId(rs.getInt("id"));
+			question.setQuestion(rs.getString("preguntas"));
+			question.setDimension(rs.getString("dimension"));
+	        questionsList.add(question);
+		}
+		return questionsList;
+		} catch (Exception e) {
+		throw e;
+		}
+		}
+	
 	public ArrayList<InfoInter> infoInterByDimension(String dimension) throws Exception {
 		DbConnection database= new DbConnection();
 		Connection connection = database.getConnection();
@@ -43,6 +64,28 @@ public class InterpretationDb {
 		try {
 		PreparedStatement ps = connection
 		.prepareStatement("SELECT * FROM infoInterpretaciones where dimension='" + dimension +"'");
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			InfoInter question = new InfoInter();
+			question.setId(rs.getInt("id"));
+			question.setCategoria(rs.getString("categoria"));
+			question.setDimension(rs.getString("dimension"));
+			question.setRecomendacion(rs.getString("recomendacion"));
+			infoList.add(question);
+		}
+		return infoList;
+		} catch (Exception e) {
+		throw e;
+		}
+		}
+	
+	public ArrayList<InfoInter> infoAllInter() throws Exception {
+		DbConnection database= new DbConnection();
+		Connection connection = database.getConnection();
+		ArrayList<InfoInter> infoList = new ArrayList<InfoInter>();
+		try {
+		PreparedStatement ps = connection
+		.prepareStatement("SELECT * FROM infoInterpretaciones");
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
 			InfoInter question = new InfoInter();

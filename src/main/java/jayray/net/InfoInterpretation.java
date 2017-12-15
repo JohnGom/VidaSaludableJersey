@@ -35,6 +35,18 @@ public class InfoInterpretation {
 	}
 	
 	@GET
+    @Path("/allquestions")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public ArrayList<Pregunta> infoAllQuestions() throws Exception {
+    try {
+		InterpretationDb inter = new InterpretationDb();
+	    return inter.questionsAll();
+	} catch (Exception e) {
+		throw e;
+	}
+	}
+	
+	@GET
     @Path("/infoInterpretaciones")
 	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
     public ArrayList<InfoInter> infoInterp(@QueryParam("dimension") String dimension) throws Exception {
@@ -44,6 +56,18 @@ public class InfoInterpretation {
 	} catch (Exception e) {
 		throw e;
 	}
+	}
+	
+	@GET
+    @Path("/allinfoInterpretaciones")
+	@Produces(MediaType.APPLICATION_JSON + ";charset=utf-8")
+    public ArrayList<InfoInter> allinfoInterp(@QueryParam("dimension") String dimension) throws Exception {
+	    try {
+			InterpretationDb inter = new InterpretationDb();
+		    return inter.infoAllInter();
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 	
 	@GET

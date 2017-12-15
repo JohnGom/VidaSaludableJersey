@@ -127,11 +127,16 @@ public class ClientDb {
 		DbConnection database= new DbConnection();
 		Connection connection = database.getConnection();
 		try {
-		String query = "insert into intervenciones(jornada_numero, participante)"
-		        + " values (?, ?)";
+		String query = "insert into intervenciones(jornada_numero, participante, observacion, resultado, fechaIntervencion, fechaSeguimiento, correo)"
+		        + " values (?, ?, ?, ?, ?, ?, ?)";
 		PreparedStatement preparedStmt = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
 		  preparedStmt.setInt (1, intervencion.getJornada());
 	      preparedStmt.setInt (2, intervencion.getParticipante());
+	      preparedStmt.setString (3, intervencion.getObservacion());
+	      preparedStmt.setString (4, intervencion.getResultado());
+	      preparedStmt.setDate (5, intervencion.getFechaInter());
+	      preparedStmt.setDate (6, intervencion.getFechaSegui());
+	      preparedStmt.setString (7, intervencion.getCorreo());
 	      preparedStmt.execute();
 	      
 	      int clave = 0;
